@@ -7,6 +7,7 @@ const Home = ({ games }) => {
         <Link to={`/${game._id}`} key={game._id}>
           <div key={game._id}>
             <h1>{game.name}</h1>
+            <img src={game.image} alt={game.name} />
           </div>
         </Link>
       ))}
