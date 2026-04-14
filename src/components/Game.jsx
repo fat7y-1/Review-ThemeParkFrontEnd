@@ -23,7 +23,7 @@ const Game = ({ games, reviews }) => {
     getReview()
   }, [])
 
-  // console.log(selectedGame._id)
+  console.log(selectedGame._id)
 
   return (
     <div key={selectedGame._id}>
