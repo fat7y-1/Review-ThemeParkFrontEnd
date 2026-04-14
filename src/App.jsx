@@ -9,8 +9,8 @@ function App() {
     const getGames = async () => {
       try {
         let response = await axios.get("http://localhost:3001/game")
-        console.log(response)
-        setGames(response)
+        console.log(response.data)
+        setGames(response.data)
       } catch (err) {
         console.log(err)
       }
