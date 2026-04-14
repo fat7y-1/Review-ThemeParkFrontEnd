@@ -1,22 +1,10 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
-<<<<<<< HEAD
-import AddReview from "./AddReview"
-import axios from "axios"
-
-const Game = ({ games }) => {
-  const [addReview, setAddReview] = useState([])
-
-  useEffect(() => {
-    const getReview = async () => {
-      try {
-        let response = await axios.get("http://localhost:3001/review")
-=======
 import ListReviews from "./ListReviews"
 import AddReview from "./AddReview"
 import axios from "axios"
 
-const Game = ({ games, reviews }) => {
+const Game = ({ games }) => {
   const { id } = useParams()
   const [addReview, setAddReview] = useState([])
 
@@ -26,7 +14,6 @@ const Game = ({ games, reviews }) => {
       try {
         let response = await axios.get(`http://localhost:3001/review/${id}`)
         console.log(response.data)
->>>>>>> 713f06489082589bd2f74480d1dcbaad78326d9e
         setAddReview(response.data)
       } catch (err) {
         console.log(err)
@@ -36,14 +23,17 @@ const Game = ({ games, reviews }) => {
     getReview()
   }, [])
 
-<<<<<<< HEAD
-  const { id } = useParams()
-  const selectedGame = games.find((game) => game._id === id)
-
-  if (!selectedGame) return <div>Loading game details...</div>
-=======
+  const handleDeleteReview = async (reviewId) => {
+    try {
+      await axios.delete(`http://localhost:3001/review/${reviewId}`)
+      // Update the reviews list by filtering out the deleted review
+      setAddReview(addReview.filter((review) => review._id !== reviewId))
+      console.log("Review deleted successfully")
+    } catch (err) {
+      console.log("Error deleting review:", err)
+    }
+  }
   // console.log(selectedGame._id)
->>>>>>> 713f06489082589bd2f74480d1dcbaad78326d9e
 
   return (
     <div key={selectedGame._id}>
@@ -51,13 +41,12 @@ const Game = ({ games, reviews }) => {
       <img src={selectedGame.image} alt="game image" />
       <p>{selectedGame.desc}</p>
 
-<<<<<<< HEAD
-      <AddReview addReview={addReview} setAddReview={setAddReview} id={id} />
-=======
-      <ListReviews addReview={addReview} />
+      <ListReviews
+        addReview={addReview}
+        handleDeleteReview={handleDeleteReview}
+      />
 
       <AddReview addReview={addReview} setAddReview={setAddReview} game={id} />
->>>>>>> 713f06489082589bd2f74480d1dcbaad78326d9e
     </div>
   )
 }

@@ -1,19 +1,11 @@
 import { useState } from "react"
 import axios from "axios"
 
-<<<<<<< HEAD
-const AddReview = ({ addReview, setAddReview, id }) => {
-  const init = {
-    commit: "",
-    rating: "",
-    game: id,
-=======
 const AddReview = ({ addReview, setAddReview, game }) => {
   const init = {
     commit: "",
     rating: 1,
     game: game,
->>>>>>> 713f06489082589bd2f74480d1dcbaad78326d9e
   }
 
   const [formState, setFormState] = useState(init)
@@ -21,22 +13,15 @@ const AddReview = ({ addReview, setAddReview, game }) => {
   const handleSubmit = async (event) => {
     event.preventDefault()
 
-<<<<<<< HEAD
-    const response = await axios.post("http://localhost:3001/review", formState)
-=======
     const response = await axios.post(`http://localhost:3001/review`, formState)
     console.log(response)
->>>>>>> 713f06489082589bd2f74480d1dcbaad78326d9e
 
     let List = [...addReview]
     List.push(response.data)
     setAddReview(List)
 
     setFormState(init)
-<<<<<<< HEAD
-=======
     console.log(formState)
->>>>>>> 713f06489082589bd2f74480d1dcbaad78326d9e
   }
 
   const handleChange = (event) => {

@@ -1,4 +1,4 @@
-const ListReviews = ({ addReview }) => {
+const ListReviews = ({ addReview, handleDeleteReview }) => {
   // console.log(`selectedGame: ${addReview}`)
   // console.log(`reviews: ${reviews}`)
   return (
@@ -7,7 +7,9 @@ const ListReviews = ({ addReview }) => {
       {addReview.map((review) => (
         <div key={review._id}>
           <h3>{review.commit}</h3>
-          <button>Delete Review</button>
+          <button onClick={() => handleDeleteReview(review._id)}>
+            Delete Review
+          </button>
         </div>
       ))}
     </div>
