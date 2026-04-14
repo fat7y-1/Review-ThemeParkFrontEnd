@@ -24,7 +24,7 @@ function App() {
     <>
       <div>
         <Routes>
-          <Route path="/game" element={<Home games={games} />} />
+          <Route path="/" element={<Home games={games} />} />
           <Route path="/:id" element={<Game games={games} />} />
         </Routes>
       </div>
