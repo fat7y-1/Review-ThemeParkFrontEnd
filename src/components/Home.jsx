@@ -1,11 +1,14 @@
+import { Link } from "react-router-dom"
 const Home = ({ games }) => {
   return (
     <div>
-      <h1>helllll</h1>
+      <h1>hell</h1>
       {games.map((game) => (
-        <div key={game._id}>
-          <h1>{game.name}</h1>
-        </div>
+        <Link to={`/${game._id}`}>
+          <div key={game._id}>
+            <h1>{game.name}</h1>
+          </div>
+        </Link>
       ))}
     </div>
   )
