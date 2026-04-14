@@ -1,10 +1,10 @@
-const Home = (props) => {
+const Home = ({ games }) => {
   return (
     <div>
       <h1>helllll</h1>
-      {props.games.map((game) => (
-        <div>
-          <h1 style={{ color: "white" }}>{game.name}</h1>
+      {games.map((game) => (
+        <div key={game._id}>
+          <h1>{game.name}</h1>
         </div>
       ))}
     </div>
