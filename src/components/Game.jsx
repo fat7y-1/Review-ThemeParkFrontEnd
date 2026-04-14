@@ -23,7 +23,7 @@ const Game = ({ games, reviews }) => {
     getReview()
   }, [])
 
-  console.log(selectedGame._id)
+  // console.log(selectedGame._id)
 
   return (
     <div key={selectedGame._id}>
@@ -31,9 +31,8 @@ const Game = ({ games, reviews }) => {
       <img src={selectedGame.image} alt="game image" />
       <p>{selectedGame.desc}</p>
 
-      <ListReviews addReview={addReview} />
-
       <AddReview addReview={addReview} setAddReview={setAddReview} game={id} />
+      <ListReviews addReview={addReview} />
     </div>
   )
 }
