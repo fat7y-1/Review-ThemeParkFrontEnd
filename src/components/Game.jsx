@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
+import { Link } from "react-router-dom"
 import ListReviews from "./ListReviews"
 import AddReview from "./AddReview"
 import axios from "axios"
@@ -26,15 +27,24 @@ const Game = ({ games, reviews }) => {
   // console.log(selectedGame._id)
 
   return (
-    <div key={selectedGame._id}>
-      <h1>{selectedGame.name}</h1>
-      <img src={selectedGame.image} alt="game image" />
-      <p>{selectedGame.desc}</p>
+    <>
+      <Link to={"/"}>
+        <h5>Back</h5>
+      </Link>
+      <div key={selectedGame._id}>
+        <h1>{selectedGame.name}</h1>
+        <img src={selectedGame.image} alt="game image" />
+        <p>{selectedGame.desc}</p>
 
-      <ListReviews addReview={addReview} />
+        <ListReviews addReview={addReview} />
 
-      <AddReview addReview={addReview} setAddReview={setAddReview} game={id} />
-    </div>
+        <AddReview
+          addReview={addReview}
+          setAddReview={setAddReview}
+          game={id}
+        />
+      </div>
+    </>
   )
 }
 export default Game
