@@ -42,19 +42,6 @@ const Game = ({ games }) => {
       <Link to={"/"}>
         <h5>Back</h5>
       </Link>
-      <div key={selectedGame._id}>
-        <h1>{selectedGame.name}</h1>
-        <img src={selectedGame.image} alt="game image" />
-        <p>{selectedGame.desc}</p>
-
-        <ListReviews addReview={addReview} />
-
-        <AddReview
-          addReview={addReview}
-          setAddReview={setAddReview}
-          game={id}
-        />
-      </div>
 
       <div key={selectedGame._id}>
         <h1>{selectedGame.name}</h1>
