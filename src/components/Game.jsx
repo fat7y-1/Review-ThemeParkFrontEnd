@@ -40,12 +40,12 @@ const Game = ({ games }) => {
       <img src={selectedGame.image} alt="game image" />
       <p>{selectedGame.desc}</p>
 
+      <AddReview addReview={addReview} setAddReview={setAddReview} game={id} />
+
       <ListReviews
         addReview={addReview}
         handleDeleteReview={handleDeleteReview}
       />
-
-      <AddReview addReview={addReview} setAddReview={setAddReview} game={id} />
     </div>
   )
 }

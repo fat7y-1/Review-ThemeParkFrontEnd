@@ -7,6 +7,7 @@ const ListReviews = ({ addReview, handleDeleteReview }) => {
       {addReview.map((review) => (
         <div key={review._id}>
           <h3>{review.commit}</h3>
+          <h4>Rate: {review.rating}</h4>
           <button onClick={() => handleDeleteReview(review._id)}>
             Delete Review
           </button>

@@ -34,7 +34,7 @@ const AddReview = ({ addReview, setAddReview, game }) => {
       <textarea
         name="commit"
         cols="30"
-        rows="10"
+        rows="5"
         onChange={handleChange}
         value={formState.commit}
       ></textarea>
