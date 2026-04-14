@@ -5,7 +5,7 @@ import ListReviews from "./ListReviews"
 import AddReview from "./AddReview"
 import axios from "axios"
 
-const Game = ({ games, reviews }) => {
+const Game = ({ games }) => {
   const { id } = useParams()
   const [addReview, setAddReview] = useState([])
 
@@ -26,6 +26,17 @@ const Game = ({ games, reviews }) => {
 
   // console.log(selectedGame._id)
 
+  const handleDeleteReview = async (reviewId) => {
+    try {
+      await axios.delete(`http://localhost:3001/review/${reviewId}`)
+      setAddReview(addReview.filter((review) => review._id !== reviewId))
+      console.log("Review deleted successfully")
+    } catch (err) {
+      console.log("Error deleting review:", err)
+    }
+  }
+  // console.log(selectedGame._id)
+
   return (
     <>
       <Link to={"/"}>
@@ -37,6 +48,23 @@ const Game = ({ games, reviews }) => {
         <p>{selectedGame.desc}</p>
 
         <ListReviews addReview={addReview} />
+
+        <AddReview
+          addReview={addReview}
+          setAddReview={setAddReview}
+          game={id}
+        />
+      </div>
+
+      <div key={selectedGame._id}>
+        <h1>{selectedGame.name}</h1>
+        <img src={selectedGame.image} alt="game image" />
+        <p>{selectedGame.desc}</p>
+
+        <ListReviews
+          addReview={addReview}
+          handleDeleteReview={handleDeleteReview}
+        />
 
         <AddReview
           addReview={addReview}
