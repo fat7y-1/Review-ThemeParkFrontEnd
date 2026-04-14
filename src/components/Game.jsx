@@ -1,15 +1,19 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
+import ListReviews from "./ListReviews"
 import AddReview from "./AddReview"
 import axios from "axios"
 
-const Game = ({ games }) => {
+const Game = ({ games, reviews }) => {
+  const { id } = useParams()
   const [addReview, setAddReview] = useState([])
 
+  const selectedGame = games.find((game) => game._id === id)
   useEffect(() => {
     const getReview = async () => {
       try {
-        let response = await axios.get("http://localhost:3001/review")
+        let response = await axios.get(`http://localhost:3001/review/${id}`)
+        console.log(response.data)
         setAddReview(response.data)
       } catch (err) {
         console.log(err)
@@ -19,22 +23,17 @@ const Game = ({ games }) => {
     getReview()
   }, [])
 
-  const { id } = useParams()
-  let selectedGame
-  games.forEach((game) => {
-    if (game._id === id) {
-      selectedGame = game
-    }
-  })
-  console.log(games)
+  // console.log(selectedGame._id)
 
   return (
-    <div>
+    <div key={selectedGame._id}>
       <h1>{selectedGame.name}</h1>
       <img src={selectedGame.image} alt="game image" />
       <p>{selectedGame.desc}</p>
 
-      <AddReview addReview={addReview} setAddReview={setAddReview} />
+      <ListReviews addReview={addReview} />
+
+      <AddReview addReview={addReview} setAddReview={setAddReview} game={id} />
     </div>
   )
 }
