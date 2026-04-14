@@ -2,6 +2,8 @@ import { useState, useEffect } from "react"
 import Home from "./components/Home"
 import axios from "axios"
 import "./App.css"
+import { Routes, Route } from "react-router-dom"
+import Game from "./components/Game"
 
 function App() {
   const [games, setGames] = useState([])
@@ -21,7 +23,10 @@ function App() {
   return (
     <>
       <div>
-        <Home games={games} />
+        <Routes>
+          <Route path="/game" element={<Home games={games} />} />
+          <Route path="/:id" element={<Game games={games} />} />
+        </Routes>
       </div>
     </>
   )
