@@ -26,7 +26,6 @@ const Game = ({ games }) => {
   const handleDeleteReview = async (reviewId) => {
     try {
       await axios.delete(`http://localhost:3001/review/${reviewId}`)
-      // Update the reviews list by filtering out the deleted review
       setAddReview(addReview.filter((review) => review._id !== reviewId))
       console.log("Review deleted successfully")
     } catch (err) {
