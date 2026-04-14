@@ -4,7 +4,7 @@ const Home = ({ games }) => {
     <div>
       <h1>hell</h1>
       {games.map((game) => (
-        <Link to={`/${game._id}`}>
+        <Link to={`/${game._id}`} key={game._id}>
           <div key={game._id}>
             <h1>{game.name}</h1>
           </div>
