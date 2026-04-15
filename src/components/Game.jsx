@@ -10,11 +10,12 @@ const Game = ({ games }) => {
   const [addReview, setAddReview] = useState([])
 
   const selectedGame = games.find((game) => game._id === id)
+  console.log(selectedGame.desc)
   useEffect(() => {
     const getReview = async () => {
       try {
         let response = await axios.get(`http://localhost:3001/review/${id}`)
-        console.log(response.data)
+        // console.log(response.data)
         setAddReview(response.data)
       } catch (err) {
         console.log(err)
@@ -30,7 +31,7 @@ const Game = ({ games }) => {
     try {
       await axios.delete(`http://localhost:3001/review/${reviewId}`)
       setAddReview(addReview.filter((review) => review._id !== reviewId))
-      console.log("Review deleted successfully")
+      // console.log("Review deleted successfully")
     } catch (err) {
       console.log("Error deleting review:", err)
     }
@@ -38,28 +39,45 @@ const Game = ({ games }) => {
   // console.log(selectedGame._id)
 
   return (
-    <>
+    <div className="mainDiv" height="100px">
       <Link to={"/"}>
-        <h5>Back</h5>
+        {/* <h5>Back</h5> */}
+        <img
+          src="https://cdn-icons-png.flaticon.com/128/507/507257.png"
+          alt="back"
+          height="25px"
+          className="backIcon"
+        />
       </Link>
 
       <div key={selectedGame._id}>
-        <h1>{selectedGame.name}</h1>
-        <img src={selectedGame.image} alt="game image" />
-        <p>{selectedGame.desc}</p>
+        <h1 className="design">{selectedGame.name}</h1>
+        <br />
+        <img src={selectedGame.image} alt="game image" className="game-image" />
+        <br />
+        <p className="design">{selectedGame.desc}</p>
+        <br />
+        <hr />
+        {/* <br /> */}
 
         <AddReview
           addReview={addReview}
           setAddReview={setAddReview}
           game={id}
         />
-
-        <ListReviews
-          addReview={addReview}
-          handleDeleteReview={handleDeleteReview}
-        />
+        <br />
+        {addReview.length === 0 ? (
+          <h1 className="design">NO REVIEW</h1>
+        ) : (
+          <ListReviews
+            addReview={addReview}
+            handleDeleteReview={handleDeleteReview}
+          />
+        )}
       </div>
-    </>
+      <br />
+      <br />
+    </div>
   )
 }
 export default Game
