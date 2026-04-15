@@ -30,7 +30,10 @@ const AddReview = ({ addReview, setAddReview, game }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label htmlFor="commit">comment</label>
+      <label htmlFor="commit" className="design">
+        comment
+      </label>
+      <br />
       <textarea
         name="commit"
         cols="30"
@@ -38,7 +41,10 @@ const AddReview = ({ addReview, setAddReview, game }) => {
         onChange={handleChange}
         value={formState.commit}
       ></textarea>
-      <label htmlFor="rating">Rate:</label>
+      <br />
+      <label htmlFor="rating" className="design">
+        Rate:
+      </label>
       <select name="rating" onChange={handleChange} value={formState.rating}>
         <option value="1">1</option>
         <option value="2">2</option>
@@ -46,6 +52,8 @@ const AddReview = ({ addReview, setAddReview, game }) => {
         <option value="4">4</option>
         <option value="5">5</option>
       </select>
+      <br />
+      <br />
       <button type="submit">Add</button>
     </form>
   )

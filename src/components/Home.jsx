@@ -1,17 +1,19 @@
 import { Link } from "react-router-dom"
 const Home = ({ games }) => {
   return (
-    <div>
-      <h1>helllll</h1>
-      {games.map((game) => (
-        <Link to={`/${game._id}`} key={game._id}>
-          <div key={game._id}>
-            <h1>{game.name}</h1>
-            <img src={game.image} alt={game.name} />
-          </div>
-        </Link>
-      ))}
-    </div>
+    <>
+      <h1 className="gamesh1">Park Games</h1>
+      <div className="games">
+        {games.map((game) => (
+          <Link to={`/${game._id}`} key={game._id} className="link">
+            <div key={game._id} className="gameBox">
+              <img src={game.image} alt={game.name} />
+              <h2>{game.name}</h2>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </>
   )
 }
 export default Home
